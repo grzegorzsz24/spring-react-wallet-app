@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/wallet")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 public class WalletController {
     private final WalletService walletService;

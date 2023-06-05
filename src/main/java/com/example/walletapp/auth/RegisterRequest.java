@@ -1,5 +1,8 @@
 package com.example.walletapp.auth;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +13,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    private String firstname;
-    private String lastname;
+    @NotNull
+    @Size(min = 2, max = 50)
+    private String firstName;
+    @NotNull
+    @Size(min = 2, max = 50)
+    private String lastName;
+    @NotNull
+    @Email
     private String email;
+    @NotNull
+    @Size(min = 8)
     private String password;
 }
 

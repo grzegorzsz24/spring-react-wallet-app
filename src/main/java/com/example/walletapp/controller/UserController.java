@@ -47,8 +47,8 @@ public class UserController {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
             User updatedUser = existingUser.get();
-            updatedUser.setFirstname(user.getFirstname());
-            updatedUser.setLastname(user.getLastname());
+            updatedUser.setFirstName(user.getFirstName());
+            updatedUser.setLastName(user.getLastName());
             updatedUser.setEmail(user.getEmail());
             updatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
             updatedUser.setRole(user.getRole());

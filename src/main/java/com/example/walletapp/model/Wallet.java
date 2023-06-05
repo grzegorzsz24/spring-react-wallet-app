@@ -1,5 +1,7 @@
 package com.example.walletapp.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +18,14 @@ import java.util.List;
 public class Wallet {
     @Id
     private String id;
+    @NotNull
+    @Size(max = 50)
     private String name;
+    @NotNull
+    @Size(max = 50)
     private String accountNumber;
+    @NotNull
+    @Size(max = 250)
     private String description;
     private Integer priority;
     private Double currentBalance;

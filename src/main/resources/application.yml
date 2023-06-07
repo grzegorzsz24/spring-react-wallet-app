@@ -3,3 +3,5 @@ spring:
     mongodb:
       uri: mongodb+srv://grzesioszymanek:Grzesieg12@cluster0.pslghkr.mongodb.net/Wallet?retryWrites=true&w=majority
       database: Wallet
+#      host: localhost
+#      port: 27017

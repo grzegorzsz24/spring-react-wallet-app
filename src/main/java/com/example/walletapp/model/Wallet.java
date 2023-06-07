@@ -1,5 +1,6 @@
 package com.example.walletapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,11 @@ public class Wallet {
     private String description;
     private Integer priority;
     private Double currentBalance;
-    @DocumentReference
+    @DocumentReference()
     private List<Transaction> transactionList;
+    @DocumentReference
+    @JsonIgnore
+    private User user;
 
     public void deposit(double amount){this.currentBalance+=amount;}
     public void withdraw(double amount){this.currentBalance-=amount;}

@@ -34,7 +34,7 @@ public class TransactionService {
     public List<Transaction> getAll(String walletId) {
         Optional<Wallet> wallet = walletRepository.findById(walletId);
         if (wallet.isPresent()) {
-            return transactionRepository.findByWallet(wallet.get());
+            return transactionRepository.findByWallet(wallet.get()).get();
         }
         return null;
     }

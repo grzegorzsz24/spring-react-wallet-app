@@ -15,11 +15,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-// To transform the class into a managed bean
 public class JwtService {
     private static final String SECRET_KEY = "3F4428472B4B6250655368566D597133743677397A244326452948404D635166";
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject); // The subject is the user email in the jwt token
+        return extractClaim(token, Claims::getSubject);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -31,7 +30,6 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    // Method to validte the token
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
@@ -52,7 +50,7 @@ public class JwtService {
         return Jwts.builder()
                 .setClaims(extractClaims)
                 .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis())) // used to determine if the token is expired
+                .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 *1000))
                 .signWith(getSingningKey(), SignatureAlgorithm.HS256)
                 .compact();

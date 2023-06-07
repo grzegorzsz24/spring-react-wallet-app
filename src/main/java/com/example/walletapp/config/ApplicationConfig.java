@@ -32,13 +32,9 @@ public class ApplicationConfig {
     }
 
     @Bean
-    // This is the data access object that is responsible for fetching
-    // the user details
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        // We must precise with user details service we want to use
         authenticationProvider.setUserDetailsService(userDetailsService());
-        // Specify the password encoder
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }

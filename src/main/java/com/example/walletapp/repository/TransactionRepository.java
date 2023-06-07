@@ -6,8 +6,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
-    public List<Transaction> findByWallet(Wallet wallet);
+    public Optional<List<Transaction>> findByWallet(Wallet wallet);
 }

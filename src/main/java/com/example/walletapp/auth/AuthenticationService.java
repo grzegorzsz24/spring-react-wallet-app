@@ -9,15 +9,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    // Inject our repository
     private final UserRepository userRepository;
-    // Inject the password encoder
     private final PasswordEncoder passwordEncoder;
-    // Inject the jwt token
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -28,6 +26,7 @@ public class AuthenticationService {
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.USER)
+                .wallets(List.of())
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -41,12 +40,11 @@ public class AuthenticationService {
                         authenticationRequest.getPassword()
                 )
         );
-        // If we hit this area the user is authenticated
-        // We will generate a token and send it back to the user
         var user = userRepository.findByEmail(authenticationRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        String userId = user.getId();
+        return AuthenticationResponse.builder().token(jwtToken).userId(userId).build();
     }
 }
 

@@ -5,6 +5,12 @@ With WalletApp, you can create, update, and delete wallets, enabling you to orga
 The application also allows you to add transactions to your wallets, providing a detailed record of your income and expenses. 
 It consists of a REST API and a client-side web application.
 
+User Authentication
+
+WalletApp includes user authentication and registration functionality using JSON Web Token (JWT). Users can create an account and log in to access the application's features.
+To register a new user account, click on the "Sign Up" button on the login page and follow the instructions.
+To log in to an existing account, enter your email and password in the login form.
+
 Technologies used in the project:
 - <b>Frontend:</b> <br>
   [![](https://skills.thijs.gg/icons?i=react,bootstrap,&theme=dark)](https://skills.thijs.gg)

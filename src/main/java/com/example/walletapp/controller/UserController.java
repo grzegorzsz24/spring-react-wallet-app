@@ -2,6 +2,7 @@ package com.example.walletapp.controller;
 
 import com.example.walletapp.model.User;
 import com.example.walletapp.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +15,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@AllArgsConstructor
 public class UserController {
-
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    public UserController() {
-    }
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     @GetMapping("/all")
     public ResponseEntity<?> getAllUsers() {
